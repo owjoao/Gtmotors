@@ -1,0 +1,1676 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="scroll-smooth">
+<head>
+    <meta http-equiv="X-Content-Type-Options" content="nosniff" />
+    <meta name="referrer" content="strict-origin-when-cross-origin" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>GT Motors | Venda de Carros Esportivos e Supercarros Exclusivos</title>
+  <meta name="description" content="GT Motors - A sua loja especializada na venda de carros esportivos, superesportivos e seminovos premium. Veículos selecionados a dedo com laudo 100% aprovado, garantia total e entrega em todo o Brasil." />
+  
+  <!-- Open Graph Meta Tags -->
+  <meta property="og:title" content="GT Motors | Venda de Carros Esportivos & Supercarros" />
+  <meta property="og:description" content="Conheça o showroom da GT Motors. Superesportivos, sedãs de alta performance e SUVs de luxo a pronta entrega." />
+  <meta property="og:type" content="website" />
+  
+  <!-- Google Fonts: Montserrat, Outfit & Plus Jakarta Sans -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,600;0,700;0,800;0,900;1,800;1,900&family=Outfit:wght@400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Syne:wght@700;800;900&display=swap" rel="stylesheet" />
+  
+  <!-- FontAwesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+  
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            gt: {
+              flame: '#FF4D00',       // Vibrant Logo Flame Orange
+              amber: '#FF7A00',       // Electric Warm Amber
+              black: '#0A0D14',       // Deep Noble Black
+              dark: '#111827',        // Pitch Charcoal
+              slate: '#475569',       // Clean Slate Gray
+              border: '#E2E8F0',      // Crisp Border Gray
+              surface: '#F8FAFC',     // Clean Off-White Surface
+              card: '#FFFFFF'         // Pure Luxury White
+            }
+          },
+          fontFamily: {
+            sans: ['Plus Jakarta Sans', 'sans-serif'],
+            outfit: ['Outfit', 'sans-serif'],
+            montserrat: ['Montserrat', 'sans-serif'],
+            syne: ['Syne', 'sans-serif']
+          },
+          boxShadow: {
+            'gt-flame': '0 10px 25px -5px rgba(255, 77, 0, 0.4)',
+            'gt-card': '0 20px 40px -15px rgba(0, 0, 0, 0.07)',
+            'gt-card-hover': '0 25px 50px -12px rgba(255, 77, 0, 0.15)',
+            'laser-glow': '0 0 20px rgba(255, 77, 0, 0.35)'
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    /* Custom Scrollbar */
+    ::-webkit-scrollbar {
+      width: 8px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #FFFFFF;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #FF4D00;
+      border-radius: 4px;
+    }
+
+    /* Scroll progress bar */
+    #scroll-progress {
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 3px;
+      background: linear-gradient(90deg, #FF4D00, #FF7A00, #0A0D14, #FF4D00);
+      z-index: 9999;
+      width: 0%;
+      transition: width 0.1s ease-out;
+    }
+
+    /* Clean Vector Grid Background */
+    .hero-vector-grid {
+      background-color: #FFFFFF;
+      background-size: 40px 40px;
+      background-image: 
+        linear-gradient(to right, rgba(0, 0, 0, 0.035) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(0, 0, 0, 0.035) 1px, transparent 1px);
+    }
+
+    /* Giant Dynamic Typographic Watermark (Depth Behind Car) */
+    .hero-giant-watermark {
+      position: absolute;
+      top: 45%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-family: 'Montserrat', sans-serif;
+      font-style: italic;
+      font-weight: 900;
+      font-size: clamp(4.5rem, 15vw, 16rem);
+      letter-spacing: -0.04em;
+      line-height: 0.85;
+      text-transform: uppercase;
+      white-space: nowrap;
+      user-select: none;
+      pointer-events: none;
+      color: rgba(10, 13, 20, 0.035);
+      -webkit-text-stroke: 1.5px rgba(255, 77, 0, 0.15);
+      z-index: 5;
+      transition: opacity 0.5s ease, transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+      will-change: transform, opacity;
+    }
+
+    /* Car Stage in Hero */
+    .car-stage-hero {
+      position: relative;
+      width: 100%;
+      min-height: 380px;
+      height: 480px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 10;
+    }
+
+    .car-hero-render {
+      position: absolute;
+      width: 100%;
+      max-width: 860px;
+      height: 100%;
+      object-fit: contain;
+      object-position: center bottom;
+      transition: transform 0.75s cubic-bezier(0.16, 1, 0.3, 1), 
+                  opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1), 
+                  filter 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+      filter: drop-shadow(0 25px 35px rgba(0, 0, 0, 0.15));
+      user-select: none;
+      pointer-events: none;
+      will-change: transform, opacity, filter;
+    }
+
+    /* Floating Telemetry Badges */
+    @keyframes float-badge {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-6px); }
+    }
+    .animate-float-badge {
+      animation: float-badge 3.5s ease-in-out infinite;
+    }
+
+    /* Soft Floor Reflection Arc */
+    .floor-reflection-arc {
+      position: absolute;
+      bottom: 25px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 75%;
+      height: 40px;
+      border-radius: 50%;
+      background: radial-gradient(ellipse at center, rgba(255, 77, 0, 0.18) 0%, rgba(10, 13, 20, 0.06) 50%, transparent 80%);
+      filter: blur(14px);
+      pointer-events: none;
+      z-index: 6;
+      transition: background 0.6s ease;
+    }
+  </style>
+  <link rel="stylesheet" href="../assets/css/motion-core.css">
+
+  <!-- GSAP & ScrollTrigger -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+
+
+  <!-- Schema.org SEO & GEO Data -->
+  <script type="application/ld+json">
+  {
+  "@context": "https://schema.org",
+  "@type": "AutoDealer",
+  "name": "GT Motors Brasil • Veículos Premium & Esportivos",
+  "description": "Showroom especializado em carros esportivos e blindados com laudo cautelar 100% aprovado.",
+  "telephone": "+55-32-99929-2311",
+  "url": "https://nexusflow.digital/gtmotors/",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "Av. Paulista, 1000 - Bela Vista / Jardins",
+    "addressLocality": "São Paulo",
+    "addressRegion": "SP",
+    "postalCode": "01310-100",
+    "addressCountry": "BR"
+  },
+  "priceRange": "$$$"
+}
+  </script>
+
+
+  <style>
+    /* Cult UI Shimmer Microinteraction */
+    .shimmer-btn {
+      position: relative;
+      overflow: hidden;
+    }
+    .shimmer-btn::after {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -60%;
+      width: 40%;
+      height: 200%;
+      background: linear-gradient(60deg, rgba(255,255,255,0) 20%, rgba(255,255,255,0.35) 50%, rgba(255,255,255,0) 80%);
+      transform: rotate(25deg);
+      animation: shimmerSweep 4s infinite ease-in-out;
+    }
+    @keyframes shimmerSweep {
+      0% { left: -60%; }
+      30% { left: 140%; }
+      100% { left: 140%; }
+    }
+  </style>
+
+</head>
+<body class="bg-white text-slate-900 font-sans antialiased selection:bg-gt-flame selection:text-white overflow-x-hidden">
+
+  <!-- Scroll Progress Indicator -->
+  <div id="scroll-progress"></div>
+
+  <!-- ========================================================================= -->
+  <!-- TOP VIP BAR (URGÊNCIA, ESTOQUE 0KM & ATENDIMENTO VIP)                     -->
+  <!-- ========================================================================= -->
+  <div class="bg-gt-black text-white text-xs py-2 px-4 text-center font-medium tracking-wide flex items-center justify-center gap-3">
+    <span class="inline-flex items-center gap-1.5 bg-gt-flame/20 text-gt-flame px-2.5 py-0.5 rounded-full font-bold uppercase tracking-wider text-[10px] border border-gt-flame/40">
+      <span class="w-1.5 h-1.5 rounded-full bg-gt-flame animate-ping"></span>
+      ESTOQUE EXCLUSIVO 2026
+    </span>
+    <span class="text-slate-200 hidden sm:inline">Superesportivos e Seminovos Selecionados com <strong>Laudo Cautelar 100% Aprovado</strong> e Pronta Entrega.</span>
+    <a href="#estoque" class="text-gt-amber hover:text-white font-bold underline transition-colors flex items-center gap-1">
+      Ver Catálogo <i class="fa-solid fa-arrow-right text-[10px]"></i>
+    </a>
+  </div>
+
+  <!-- ========================================================================= -->
+  <!-- HEADER / NAVBAR (ESTILO PREMIUM WHITE & BLACK CONTRASTE)                  -->
+  <!-- ========================================================================= -->
+  <header id="main-header" class="sticky top-0 z-50 bg-white/95 backdrop-blur-md border-b border-gt-border transition-all duration-300">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-20">
+        
+        <!-- Brand Logo GT Motors (Geometric Tiger Emblem + Typography) -->
+        <a href="#inicio" class="flex items-center gap-3 group">
+          <div class="relative w-10 h-10 rounded-xl bg-gt-black p-0.5 shadow-md group-hover:scale-105 transition-transform duration-300">
+            <div class="w-full h-full bg-gt-black rounded-[10px] flex items-center justify-center overflow-hidden p-1">
+              <!-- SVG Vector Predator Logo -->
+              <svg viewBox="0 0 100 100" class="w-full h-full" fill="none" stroke="url(#gt-logo-grad)" stroke-width="8" stroke-linecap="round" stroke-linejoin="round">
+                <defs>
+                  <linearGradient id="gt-logo-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stop-color="#FF4D00" />
+                    <stop offset="100%" stop-color="#FFA000" />
+                  </linearGradient>
+                </defs>
+                <path d="M 25,25 L 45,38 L 55,38 L 75,25 L 75,50 L 58,68 L 50,85 L 42,68 L 25,50 Z" />
+                <path d="M 38,45 L 25,50 L 35,72 L 50,85 L 65,72 L 75,50 L 62,45" />
+                <path d="M 50,22 L 50,38" />
+              </svg>
+            </div>
+          </div>
+          <div class="flex flex-col">
+            <span class="font-montserrat font-black text-2xl tracking-tighter text-gt-black leading-none">
+              GT<span class="text-gt-flame">MOTORS</span>
+            </span>
+            <span class="text-[9px] font-bold tracking-[0.25em] text-slate-500 uppercase leading-tight mt-0.5">
+              Venda de Carros Esportivos
+            </span>
+          </div>
+        </a>
+
+        <!-- Desktop Navigation Menu -->
+        <nav class="hidden lg:flex items-center gap-8 font-outfit text-sm font-semibold text-slate-700">
+          <a href="#inicio" class="hover:text-gt-flame transition-colors py-2 border-b-2 border-transparent hover:border-gt-flame">Início</a>
+          <a href="#showroom" class="hover:text-gt-flame transition-colors py-2 border-b-2 border-transparent hover:border-gt-flame">Showroom</a>
+          <a href="#estoque" class="hover:text-gt-flame transition-colors py-2 border-b-2 border-transparent hover:border-gt-flame">Carros à Venda</a>
+          <a href="#avaliacao" class="hover:text-gt-flame transition-colors py-2 border-b-2 border-transparent hover:border-gt-flame">Vender / Trocar Carro</a>
+          <a href="#diferenciais" class="hover:text-gt-flame transition-colors py-2 border-b-2 border-transparent hover:border-gt-flame">Sobre a GT Motors</a>
+        </nav>
+
+        <!-- Right Action Button & Mobile Toggle -->
+        <div class="flex items-center gap-4">
+          <a href="https://wa.me/5532999292311?text=Ol%C3%A1%20GT%20Motors!%20Gostaria%20de%20consultar%20os%20ve%C3%ADculos%20dispon%C3%ADveis%20para%20venda." target="_blank" class="hidden sm:inline-flex items-center gap-2 bg-gt-black hover:bg-gt-flame text-white font-outfit font-bold text-sm px-6 py-2.5 rounded-full shadow-md hover:shadow-gt-flame hover:scale-105 active:scale-95 transition-all duration-300" rel="noopener noreferrer">
+            <i class="fa-brands fa-whatsapp text-base text-green-400"></i>
+            <span>Falar com Vendedor</span>
+          </a>
+
+          <!-- Mobile Menu Button -->
+          <button id="mobile-menu-btn" class="lg:hidden text-gt-black hover:text-gt-flame p-2 focus:outline-none" aria-label="Abrir Menu">
+            <i class="fa-solid fa-bars-staggered text-xl"></i>
+          </button>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Mobile Drawer Menu -->
+    <div id="mobile-menu" class="hidden lg:hidden bg-white border-b border-gt-border px-6 py-6 space-y-4">
+      <a href="#inicio" class="mobile-link block font-outfit font-bold text-lg text-slate-900 hover:text-gt-flame">Início</a>
+      <a href="#showroom" class="mobile-link block font-outfit font-bold text-lg text-slate-900 hover:text-gt-flame">Showroom</a>
+      <a href="#estoque" class="mobile-link block font-outfit font-bold text-lg text-slate-900 hover:text-gt-flame">Carros à Venda</a>
+      <a href="#avaliacao" class="mobile-link block font-outfit font-bold text-lg text-slate-900 hover:text-gt-flame">Vender / Trocar Meu Carro</a>
+      <a href="#diferenciais" class="mobile-link block font-outfit font-bold text-lg text-slate-900 hover:text-gt-flame">Diferenciais GT Motors</a>
+      <div class="pt-4 border-t border-gt-border">
+        <a href="https://wa.me/5532999292311" target="_blank" class="w-full flex items-center justify-center gap-2 bg-gt-flame text-white font-bold py-3 rounded-xl shadow-gt-flame" rel="noopener noreferrer">
+          <i class="fa-brands fa-whatsapp text-lg"></i>
+          <span>Falar com Consultor</span>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- ========================================================================= -->
+  <!-- HERO SECTION: 70% WHITE / 30% BLACK + ORANGE ACCENTS (VENDA DE CARROS)    -->
+  <!-- ========================================================================= -->
+  <section id="inicio" class="relative pt-6 pb-16 lg:pt-10 lg:pb-24 hero-vector-grid overflow-hidden">
+    
+    <!-- Background Animated Vector Laser Lines Canvas -->
+    <canvas id="hero-vector-canvas" class="absolute inset-0 w-full h-full pointer-events-none z-0"></canvas>
+
+    <!-- Giant Dynamic Typography Watermark Behind Car -->
+    <div id="hero-giant-watermark" class="hero-giant-watermark">
+      MCLAREN 765LT
+    </div>
+
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      
+      <!-- Top Badges -->
+      <div class="flex flex-wrap items-center justify-between gap-4 mb-4">
+        <div class="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-white border border-gt-border shadow-sm">
+          <span class="w-2.5 h-2.5 rounded-full bg-gt-flame animate-ping"></span>
+          <span class="text-xs font-bold text-gt-black font-outfit tracking-wider uppercase">
+            🔥 Supercarros & Seminovos a Pronta Entrega
+          </span>
+        </div>
+
+        <div class="hidden sm:flex items-center gap-2 text-xs text-slate-600 font-semibold bg-slate-100 px-3.5 py-1.5 rounded-full border border-slate-200">
+          <i class="fa-solid fa-shield-check text-gt-flame"></i>
+          <span>Laudo Cautelar Dekra 100% Aprovado • Garantia de Procedência</span>
+        </div>
+      </div>
+
+      <!-- Main Headline & Subtitle -->
+      <div class="text-center max-w-3xl mx-auto mb-6">
+        <h1 class="font-montserrat font-black text-4xl sm:text-6xl lg:text-7xl text-gt-black tracking-tight uppercase leading-[1.05]">
+          Encontre Seu Carro <br class="hidden sm:inline" />
+          <span class="text-transparent bg-clip-text bg-gradient-to-r from-gt-flame to-gt-amber">
+            Dos Seus Sonhos.
+          </span>
+        </h1>
+        <p class="mt-4 text-slate-600 text-base sm:text-lg max-w-2xl mx-auto font-normal leading-relaxed">
+          Compre, troque ou venda seu carro esportivo ou seminovo premium com a maior segurança do mercado. Negociação transparente, avaliação justa e entrega em todo o Brasil.
+        </p>
+      </div>
+
+      <!-- INTERACTIVE CAR SHOWROOM STAGE -->
+      <div class="relative w-full max-w-5xl mx-auto mt-2 mb-10">
+        
+        <!-- Floor Reflection Arc -->
+        <div id="floor-reflection" class="floor-reflection-arc"></div>
+
+        <!-- Vector HUD Telemetry Badge (Top Left) -->
+        <div class="absolute -top-4 left-2 sm:left-6 z-30 bg-white/95 backdrop-blur-md border border-gt-border p-3.5 rounded-2xl shadow-gt-card animate-float-badge hidden md:block">
+          <div class="flex items-center gap-3">
+            <div class="w-10 h-10 rounded-xl bg-gt-flame/15 border border-gt-flame/30 flex items-center justify-center text-gt-flame">
+              <i class="fa-solid fa-gauge-high text-lg"></i>
+            </div>
+            <div>
+              <span class="text-[10px] uppercase font-bold text-slate-500 tracking-wider block">Aceleração 0-100 km/h</span>
+              <span id="hero-stat-accel" class="font-montserrat font-black text-xl text-gt-black">2.8s</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Vector HUD Telemetry Badge (Top Right) -->
+        <div class="absolute -top-4 right-2 sm:right-6 z-30 bg-white/95 backdrop-blur-md border border-gt-border p-3.5 rounded-2xl shadow-gt-card animate-float-badge hidden md:block">
+          <div class="flex items-center gap-3">
+            <div class="w-10 h-10 rounded-xl bg-gt-black text-gt-flame flex items-center justify-center">
+              <i class="fa-solid fa-tag text-lg"></i>
+            </div>
+            <div>
+              <span class="text-[10px] uppercase font-bold text-slate-500 tracking-wider block">Preço Especial à Vista</span>
+              <span id="hero-stat-price" class="font-montserrat font-black text-xl text-gt-flame">R$ 3.890.000</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Car Render Stage -->
+        <div id="car-stage" class="car-stage-hero">
+          <img 
+            id="hero-car-render" 
+            src="images/mclaren_765lt.png" 
+            alt="McLaren 765LT GT Motors" 
+            class="car-hero-render"
+          />
+        </div>
+
+        <!-- Interactive Vehicle Selector Pills -->
+        <div class="flex items-center justify-center gap-3 sm:gap-4 mt-2 relative z-30">
+          
+          <!-- Car 1: McLaren 765LT -->
+          <button 
+            class="car-selector-btn active px-4 sm:px-6 py-2.5 rounded-full font-outfit font-bold text-xs sm:text-sm transition-all duration-300 flex items-center gap-2 border bg-gt-black text-white border-gt-black shadow-md"
+            data-car-id="mclaren"
+            data-title="MCLAREN 765LT"
+            data-img="images/mclaren_765lt.png"
+            data-accel="2.8s"
+            data-power="765 CV"
+            data-speed="330 km/h"
+            data-torque="800 Nm"
+            data-price="R$ 3.890.000"
+            data-year="2023/2023"
+            data-km="4.200 km"
+          >
+            <span class="w-2 h-2 rounded-full bg-gt-flame animate-pulse"></span>
+            <span>McLaren 765LT</span>
+          </button>
+
+          <!-- Car 2: Porsche 911 GT3 RS -->
+          <button 
+            class="car-selector-btn px-4 sm:px-6 py-2.5 rounded-full font-outfit font-bold text-xs sm:text-sm transition-all duration-300 flex items-center gap-2 border bg-white text-slate-700 border-gt-border hover:border-gt-flame hover:text-gt-black"
+            data-car-id="porsche"
+            data-title="PORSCHE GT3 RS"
+            data-img="images/porsche_gt3rs.png"
+            data-accel="3.2s"
+            data-power="525 CV"
+            data-speed="296 km/h"
+            data-torque="465 Nm"
+            data-price="R$ 2.450.000"
+            data-year="2024/2024"
+            data-km="0 km (0km)"
+          >
+            <span class="w-2 h-2 rounded-full bg-slate-400"></span>
+            <span>Porsche GT3 RS</span>
+          </button>
+
+          <!-- Car 3: Ferrari 296 GTB -->
+          <button 
+            class="car-selector-btn px-4 sm:px-6 py-2.5 rounded-full font-outfit font-bold text-xs sm:text-sm transition-all duration-300 flex items-center gap-2 border bg-white text-slate-700 border-gt-border hover:border-gt-flame hover:text-gt-black"
+            data-car-id="ferrari"
+            data-title="FERRARI 296 GTB"
+            data-img="images/ferrari_296gtb.png"
+            data-accel="2.9s"
+            data-power="830 CV"
+            data-speed="330 km/h"
+            data-torque="740 Nm"
+            data-price="R$ 3.200.000"
+            data-year="2023/2024"
+            data-km="2.800 km"
+          >
+            <span class="w-2 h-2 rounded-full bg-red-500"></span>
+            <span>Ferrari 296 GTB</span>
+          </button>
+
+        </div>
+
+      </div>
+
+      <!-- Hero Call-to-Action Bar -->
+      <div class="flex flex-col sm:flex-row items-center justify-center gap-4 pt-4">
+        <a id="hero-buy-btn" href="https://wa.me/5532999292311?text=Ol%C3%A1%20GT%20Motors!%20Gostaria%20de%20fazer%20uma%20proposta%20para%20a%20McLaren%20765LT." target="_blank" class="w-full sm:w-auto text-center bg-gt-flame hover:bg-gt-amber text-white font-montserrat font-black text-sm uppercase tracking-wider px-8 py-4 rounded-xl shadow-gt-flame hover:scale-105 active:scale-95 transition-all duration-300 flex items-center justify-center gap-2.5" rel="noopener noreferrer">
+          <i class="fa-solid fa-handshake"></i>
+          <span>Fazer Proposta de Compra</span>
+        </a>
+
+        <a href="#estoque" class="w-full sm:w-auto text-center bg-gt-black hover:bg-slate-800 text-white font-montserrat font-bold text-sm uppercase tracking-wider px-8 py-4 rounded-xl shadow-md transition-all duration-300 flex items-center justify-center gap-2.5">
+          <i class="fa-solid fa-car"></i>
+          <span>Ver Estoque Completo</span>
+        </a>
+
+        <a href="#avaliacao" class="w-full sm:w-auto text-center bg-white hover:bg-slate-50 border border-gt-border text-slate-800 font-outfit font-bold text-sm px-6 py-4 rounded-xl transition-all duration-300 flex items-center justify-center gap-2 shadow-sm">
+          <i class="fa-solid fa-arrows-rotate text-gt-flame"></i>
+          <span>Dar Meu Carro na Troca</span>
+        </a>
+      </div>
+
+      <!-- Telemetry Highlights Bar (70% White / High Contrast) -->
+      <div class="card-lift mt-14 grid grid-cols-2 md:grid-cols-4 gap-4 p-6 rounded-2xl bg-white border border-gt-border shadow-gt-card">
+        
+        <div class="flex items-center gap-3.5 border-r border-gt-border pr-4">
+          <div class="w-11 h-11 rounded-xl bg-gt-flame/15 flex items-center justify-center text-gt-flame text-xl font-bold">
+            <i class="fa-solid fa-gauge"></i>
+          </div>
+          <div>
+            <span class="text-[11px] text-slate-500 font-bold uppercase tracking-wider block">Velocidade Máx.</span>
+            <span id="stat-max-speed" class="font-montserrat font-extrabold text-lg text-gt-black">330 km/h</span>
+          </div>
+        </div>
+
+        <div class="flex items-center gap-3.5 border-r border-gt-border pr-4">
+          <div class="w-11 h-11 rounded-xl bg-gt-black flex items-center justify-center text-gt-flame text-xl font-bold">
+            <i class="fa-solid fa-horse-head"></i>
+          </div>
+          <div>
+            <span class="text-[11px] text-slate-500 font-bold uppercase tracking-wider block">Potência Total</span>
+            <span id="stat-total-power" class="font-montserrat font-extrabold text-lg text-gt-black">765 CV</span>
+          </div>
+        </div>
+
+        <div class="flex items-center gap-3.5 border-r border-gt-border pr-4">
+          <div class="w-11 h-11 rounded-xl bg-gt-flame/15 flex items-center justify-center text-gt-flame text-xl font-bold">
+            <i class="fa-solid fa-gears"></i>
+          </div>
+          <div>
+            <span class="text-[11px] text-slate-500 font-bold uppercase tracking-wider block">Torque Motor</span>
+            <span id="stat-total-torque" class="font-montserrat font-extrabold text-lg text-gt-black">800 Nm</span>
+          </div>
+        </div>
+
+        <div class="flex items-center gap-3.5">
+          <div class="w-11 h-11 rounded-xl bg-green-100 flex items-center justify-center text-green-600 text-xl font-bold">
+            <i class="fa-solid fa-certificate"></i>
+          </div>
+          <div>
+            <span class="text-[11px] text-slate-500 font-bold uppercase tracking-wider block">Laudo & Garantia</span>
+            <span class="font-montserrat font-extrabold text-lg text-gt-black">100% Aprovado</span>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ========================================================================= -->
+  <!-- SECTION: ESTOQUE DE CARROS À VENDA (CATÁLOGO VIP & PROPOSTA DIRETA)       -->
+  <!-- ========================================================================= -->
+  <section id="estoque" class="py-20 bg-gt-surface relative border-t border-gt-border">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <!-- Section Header -->
+      <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12">
+        <div>
+          <div class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-white border border-gt-border text-gt-flame text-xs font-bold uppercase tracking-widest mb-3 shadow-sm">
+            <i class="fa-solid fa-car-side"></i> Pronta Entrega
+          </div>
+          <h2 class="font-montserrat font-black text-3xl sm:text-4xl text-gt-black tracking-tight uppercase">
+            Carros à Venda <span class="text-gt-flame">GT Motors</span>
+          </h2>
+          <p class="text-slate-600 mt-2 text-sm sm:text-base max-w-xl">
+            Todos os veículos possuem laudo cautelar Dekra 100% aprovado, histórico de revisões comprovado e garantia contratual.
+          </p>
+        </div>
+
+        <!-- Category Filters -->
+        <div class="flex flex-wrap gap-2">
+          <button class="filter-tab active bg-gt-black text-white font-outfit font-bold text-xs sm:text-sm px-4 py-2 rounded-xl transition-all shadow-sm" data-filter="all">Todos</button>
+          <button class="filter-tab bg-white text-slate-700 hover:text-gt-black border border-gt-border font-outfit font-bold text-xs sm:text-sm px-4 py-2 rounded-xl transition-all shadow-sm" data-filter="super">Superesportivos</button>
+          <button class="filter-tab bg-white text-slate-700 hover:text-gt-black border border-gt-border font-outfit font-bold text-xs sm:text-sm px-4 py-2 rounded-xl transition-all shadow-sm" data-filter="porsche">Porsche</button>
+          <button class="filter-tab bg-white text-slate-700 hover:text-gt-black border border-gt-border font-outfit font-bold text-xs sm:text-sm px-4 py-2 rounded-xl transition-all shadow-sm" data-filter="ferrari">Ferrari</button>
+        </div>
+      </div>
+
+      <!-- Vehicles Grid -->
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        
+        <!-- CARD 1: McLaren 765LT -->
+        <div class="card-lift car-item super bg-white rounded-2xl border border-gt-border hover:border-gt-flame/70 overflow-hidden shadow-gt-card hover:shadow-gt-card-hover transition-all duration-300 group flex flex-col justify-between">
+          <div>
+            <!-- Image Frame -->
+            <div class="relative bg-gradient-to-b from-slate-100 to-slate-200/60 h-60 flex items-center justify-center p-4 overflow-hidden border-b border-gt-border">
+              <span class="absolute top-3 left-3 bg-gt-flame text-white font-montserrat font-black text-[10px] tracking-wider uppercase px-2.5 py-1 rounded-md z-20 shadow-sm">
+                DESTAQUE VIP
+              </span>
+              <span class="absolute top-3 right-3 bg-white/90 backdrop-blur-md text-slate-800 text-xs px-2.5 py-1 rounded-md z-20 flex items-center gap-1 font-bold shadow-sm border border-slate-200">
+                <i class="fa-solid fa-clock text-gt-flame"></i> 4.200 km
+              </span>
+              <img src="images/mclaren_765lt.png" alt="McLaren 765LT" class="w-full h-full object-contain group-hover:scale-105 transition-transform duration-500 z-10" / loading="lazy" decoding="async">
+            </div>
+
+            <!-- Details -->
+            <div class="p-6">
+              <div class="flex items-center justify-between text-xs text-gt-flame font-bold mb-1">
+                <span>MCLAREN</span>
+                <span class="text-slate-500">2023 / 2023</span>
+              </div>
+              <h3 class="font-montserrat font-black text-xl text-gt-black group-hover:text-gt-flame transition-colors">
+                765LT Spider 4.0 V8 Bi-Turbo
+              </h3>
+
+              <!-- Specs Grid -->
+              <div class="grid grid-cols-3 gap-2 py-4 my-3 border-y border-gt-border text-center text-xs">
+                <div>
+                  <span class="text-slate-400 block text-[10px] uppercase font-bold">Potência</span>
+                  <span class="font-bold text-gt-black">765 CV</span>
+                </div>
+                <div>
+                  <span class="text-slate-400 block text-[10px] uppercase font-bold">0-100 km/h</span>
+                  <span class="font-bold text-gt-black">2.8s</span>
+                </div>
+                <div>
+                  <span class="text-slate-400 block text-[10px] uppercase font-bold">Câmbio</span>
+                  <span class="font-bold text-gt-black">SSG 7-Spd</span>
+                </div>
+              </div>
+
+              <!-- Price -->
+              <div class="flex items-baseline justify-between mt-2">
+                <div>
+                  <span class="text-[10px] font-bold text-slate-400 uppercase tracking-wider block">Valor de Venda</span>
+                  <span class="font-montserrat font-black text-2xl text-gt-black">R$ 3.890.000</span>
+                </div>
+                <span class="text-xs font-bold text-green-600 bg-green-50 px-2.5 py-1 rounded-md border border-green-200">Pronta Entrega</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Card Actions -->
+          <div class="p-6 pt-0 flex gap-2">
+            <a href="https://wa.me/5532999292311?text=Ol%C3%A1%20GT%20Motors!%20Tenho%20interesse%20em%20comprar%20a%20McLaren%20765LT%20Spider%20(R$%203.890.000)." target="_blank" class="flex-1 bg-gt-black hover:bg-gt-flame text-white font-outfit font-bold text-sm py-3 rounded-xl text-center shadow-md hover:shadow-gt-flame transition-all flex items-center justify-center gap-2" rel="noopener noreferrer">
+              <i class="fa-brands fa-whatsapp text-base text-green-400"></i>
+              <span>Fazer Proposta</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- CARD 2: Porsche 911 GT3 RS -->
+        <div class="card-lift car-item porsche super bg-white rounded-2xl border border-gt-border hover:border-gt-flame/70 overflow-hidden shadow-gt-card hover:shadow-gt-card-hover transition-all duration-300 group flex flex-col justify-between">
+          <div>
+            <!-- Image Frame -->
+            <div class="relative bg-gradient-to-b from-slate-100 to-slate-200/60 h-60 flex items-center justify-center p-4 overflow-hidden border-b border-gt-border">
+              <span class="absolute top-3 left-3 bg-gt-black text-white font-montserrat font-black text-[10px] tracking-wider uppercase px-2.5 py-1 rounded-md z-20 shadow-sm">
+                0KM A PRONTA ENTREGA
+              </span>
+              <span class="absolute top-3 right-3 bg-white/90 backdrop-blur-md text-slate-800 text-xs px-2.5 py-1 rounded-md z-20 flex items-center gap-1 font-bold shadow-sm border border-slate-200">
+                <i class="fa-solid fa-clock text-gt-flame"></i> 0 km
+              </span>
+              <img src="images/porsche_gt3rs.png" alt="Porsche 911 GT3 RS" class="w-full h-full object-contain group-hover:scale-105 transition-transform duration-500 z-10" / loading="lazy" decoding="async">
+            </div>
+
+            <!-- Details -->
+            <div class="p-6">
+              <div class="flex items-center justify-between text-xs text-gt-flame font-bold mb-1">
+                <span>PORSCHE</span>
+                <span class="text-slate-500">2024 / 2024</span>
+              </div>
+              <h3 class="font-montserrat font-black text-xl text-gt-black group-hover:text-gt-flame transition-colors">
+                911 GT3 RS 4.0 Weissach
+              </h3>
+
+              <!-- Specs Grid -->
+              <div class="grid grid-cols-3 gap-2 py-4 my-3 border-y border-gt-border text-center text-xs">
+                <div>
+                  <span class="text-slate-400 block text-[10px] uppercase font-bold">Potência</span>
+                  <span class="font-bold text-gt-black">525 CV</span>
+                </div>
+                <div>
+                  <span class="text-slate-400 block text-[10px] uppercase font-bold">0-100 km/h</span>
+                  <span class="font-bold text-gt-black">3.2s</span>
+                </div>
+                <div>
+                  <span class="text-slate-400 block text-[10px] uppercase font-bold">Câmbio</span>
+                  <span class="font-bold text-gt-black">PDK 7-Spd</span>
+                </div>
+              </div>
+
+              <!-- Price -->
+              <div class="flex items-baseline justify-between mt-2">
+                <div>
+                  <span class="text-[10px] font-bold text-slate-400 uppercase tracking-wider block">Valor de Venda</span>
+                  <span class="font-montserrat font-black text-2xl text-gt-black">R$ 2.450.000</span>
+                </div>
+                <span class="text-xs font-bold text-green-600 bg-green-50 px-2.5 py-1 rounded-md border border-green-200">Pronta Entrega</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Card Actions -->
+          <div class="p-6 pt-0 flex gap-2">
+            <a href="https://wa.me/5532999292311?text=Ol%C3%A1%20GT%20Motors!%20Tenho%20interesse%20em%20comprar%20o%20Porsche%20911%20GT3%20RS%20(R$%202.450.000)." target="_blank" class="flex-1 bg-gt-black hover:bg-gt-flame text-white font-outfit font-bold text-sm py-3 rounded-xl text-center shadow-md hover:shadow-gt-flame transition-all flex items-center justify-center gap-2" rel="noopener noreferrer">
+              <i class="fa-brands fa-whatsapp text-base text-green-400"></i>
+              <span>Fazer Proposta</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- CARD 3: Ferrari 296 GTB -->
+        <div class="card-lift car-item ferrari super bg-white rounded-2xl border border-gt-border hover:border-gt-flame/70 overflow-hidden shadow-gt-card hover:shadow-gt-card-hover transition-all duration-300 group flex flex-col justify-between">
+          <div>
+            <!-- Image Frame -->
+            <div class="relative bg-gradient-to-b from-slate-100 to-slate-200/60 h-60 flex items-center justify-center p-4 overflow-hidden border-b border-gt-border">
+              <span class="absolute top-3 left-3 bg-red-600 text-white font-montserrat font-black text-[10px] tracking-wider uppercase px-2.5 py-1 rounded-md z-20 shadow-sm">
+                ROSSO CORSA
+              </span>
+              <span class="absolute top-3 right-3 bg-white/90 backdrop-blur-md text-slate-800 text-xs px-2.5 py-1 rounded-md z-20 flex items-center gap-1 font-bold shadow-sm border border-slate-200">
+                <i class="fa-solid fa-clock text-gt-flame"></i> 2.800 km
+              </span>
+              <img src="images/ferrari_296gtb.png" alt="Ferrari 296 GTB" class="w-full h-full object-contain group-hover:scale-105 transition-transform duration-500 z-10" / loading="lazy" decoding="async">
+            </div>
+
+            <!-- Details -->
+            <div class="p-6">
+              <div class="flex items-center justify-between text-xs text-gt-flame font-bold mb-1">
+                <span>FERRARI</span>
+                <span class="text-slate-500">2023 / 2024</span>
+              </div>
+              <h3 class="font-montserrat font-black text-xl text-gt-black group-hover:text-gt-flame transition-colors">
+                296 GTB V6 Híbrida 830cv
+              </h3>
+
+              <!-- Specs Grid -->
+              <div class="grid grid-cols-3 gap-2 py-4 my-3 border-y border-gt-border text-center text-xs">
+                <div>
+                  <span class="text-slate-400 block text-[10px] uppercase font-bold">Potência</span>
+                  <span class="font-bold text-gt-black">830 CV</span>
+                </div>
+                <div>
+                  <span class="text-slate-400 block text-[10px] uppercase font-bold">0-100 km/h</span>
+                  <span class="font-bold text-gt-black">2.9s</span>
+                </div>
+                <div>
+                  <span class="text-slate-400 block text-[10px] uppercase font-bold">Câmbio</span>
+                  <span class="font-bold text-gt-black">F1 Dual 8-Spd</span>
+                </div>
+              </div>
+
+              <!-- Price -->
+              <div class="flex items-baseline justify-between mt-2">
+                <div>
+                  <span class="text-[10px] font-bold text-slate-400 uppercase tracking-wider block">Valor de Venda</span>
+                  <span class="font-montserrat font-black text-2xl text-gt-black">R$ 3.200.000</span>
+                </div>
+                <span class="text-xs font-bold text-green-600 bg-green-50 px-2.5 py-1 rounded-md border border-green-200">Pronta Entrega</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Card Actions -->
+          <div class="p-6 pt-0 flex gap-2">
+            <a href="https://wa.me/5532999292311?text=Ol%C3%A1%20GT%20Motors!%20Tenho%20interesse%20em%20comprar%20a%20Ferrari%20296%20GTB%20(R$%203.200.000)." target="_blank" class="flex-1 bg-gt-black hover:bg-gt-flame text-white font-outfit font-bold text-sm py-3 rounded-xl text-center shadow-md hover:shadow-gt-flame transition-all flex items-center justify-center gap-2" rel="noopener noreferrer">
+              <i class="fa-brands fa-whatsapp text-base text-green-400"></i>
+              <span>Fazer Proposta</span>
+            </a>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Catalog PDF CTA -->
+      <div class="mt-14 text-center">
+        <a href="https://wa.me/5532999292311?text=Ol%C3%A1%20GT%20Motors!%20Gostaria%20de%20receber%20o%20cat%C3%A1logo%20completo%20de%20ve%C3%ADculos%20%C3%A0%20venda%20em%20PDF." target="_blank" class="inline-flex items-center gap-3 bg-white hover:bg-gt-black text-gt-black hover:text-white font-montserrat font-bold text-sm uppercase px-8 py-4 rounded-xl border border-gt-border hover:border-gt-black shadow-md transition-all duration-300" rel="noopener noreferrer">
+          <i class="fa-solid fa-file-arrow-down text-gt-flame"></i>
+          <span>Baixar Catálogo Completo de Carros em PDF</span>
+        </a>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ========================================================================= -->
+  <!-- SECTION: AVALIAÇÃO DE USADOS NA TROCA ("VENDA OU TROQUE SEU CARRO")       -->
+  <!-- ========================================================================= -->
+  <section id="avaliacao" class="py-20 bg-white relative border-t border-gt-border">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="card-lift bg-gradient-to-r from-slate-900 via-gt-black to-slate-900 text-white rounded-3xl p-8 sm:p-14 border border-slate-800 shadow-2xl relative overflow-hidden">
+        
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+          
+          <div class="lg:col-span-7 space-y-4">
+            <span class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-gt-flame/20 text-gt-flame text-xs font-bold uppercase tracking-wider border border-gt-flame/40">
+              <i class="fa-solid fa-arrows-rotate"></i> Compramos seu Carro • Pagamento à Vista
+            </span>
+            <h2 class="font-montserrat font-black text-3xl sm:text-4xl lg:text-5xl text-white tracking-tight uppercase leading-tight">
+              Quer Vender ou Dar Seu Carro <br />
+              <span class="text-transparent bg-clip-text bg-gradient-to-r from-gt-flame to-gt-amber">
+                Como Entrada na Troca?
+              </span>
+            </h2>
+            <p class="text-slate-300 text-sm sm:text-base leading-relaxed">
+              Avaliamos seu veículo esportivo ou seminovo premium com a melhor cotação do mercado. Pagamento imediato via Pix ou desconto direto no valor da sua nova aquisição.
+            </p>
+            <div class="flex flex-wrap gap-4 pt-2 text-xs text-slate-300">
+              <span class="flex items-center gap-1.5"><i class="fa-solid fa-circle-check text-gt-flame"></i> Avaliação em até 30 minutos</span>
+              <span class="flex items-center gap-1.5"><i class="fa-solid fa-circle-check text-gt-flame"></i> Troca com troco disponível</span>
+              <span class="flex items-center gap-1.5"><i class="fa-solid fa-circle-check text-gt-flame"></i> Quitação de débitos e financiamento</span>
+            </div>
+          </div>
+
+          <div class="lg:col-span-5 flex flex-col gap-3">
+            <a href="https://wa.me/5532999292311?text=Ol%C3%A1%20GT%20Motors!%20Gostaria%20de%20solicitar%20uma%20avalia%C3%A7%C3%A3o%20para%20vender%20ou%20trocar%20meu%20carro%20usado." target="_blank" class="w-full bg-gt-flame hover:bg-gt-amber text-white font-montserrat font-black text-sm uppercase py-4 px-6 rounded-xl text-center shadow-gt-flame hover:scale-105 transition-all flex items-center justify-center gap-2" rel="noopener noreferrer">
+              <i class="fa-brands fa-whatsapp text-lg"></i>
+              <span>Avaliar Meu Carro no WhatsApp</span>
+            </a>
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ========================================================================= -->
+  <!-- SECTION: DIFERENCIAIS DA GT MOTORS (70% WHITE / CLEAN LUXURY)             -->
+  <!-- ========================================================================= -->
+  <section id="diferenciais" class="py-20 bg-gt-surface relative border-t border-gt-border">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="text-center max-w-2xl mx-auto mb-14">
+        <span class="text-gt-flame font-outfit font-bold text-xs uppercase tracking-widest block mb-2">Por que comprar na GT Motors?</span>
+        <h2 class="font-montserrat font-black text-3xl sm:text-4xl text-gt-black tracking-tight uppercase">
+          Excelência e Segurança <span class="text-gt-flame">em Cada Detalhe</span>
+        </h2>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        
+        <!-- Feature 1 -->
+        <div class="card-lift bg-white p-6 rounded-2xl border border-gt-border hover:border-gt-flame/60 transition-all duration-300 group shadow-gt-card">
+          <div class="w-12 h-12 rounded-xl bg-gt-flame/15 flex items-center justify-center text-gt-flame text-2xl mb-5 group-hover:scale-110 transition-transform">
+            <i class="fa-solid fa-file-circle-check"></i>
+          </div>
+          <h3 class="font-montserrat font-bold text-lg text-gt-black mb-2">Laudo Cautelar Dekra</h3>
+          <p class="text-slate-600 text-xs sm:text-sm leading-relaxed">
+            Perícia estrutural completa, sem histórico de leilão, sinistro ou repinturas adulteradas.
+          </p>
+        </div>
+
+        <!-- Feature 2 -->
+        <div class="card-lift bg-white p-6 rounded-2xl border border-gt-border hover:border-gt-flame/60 transition-all duration-300 group shadow-gt-card">
+          <div class="w-12 h-12 rounded-xl bg-gt-black flex items-center justify-center text-gt-flame text-2xl mb-5 group-hover:scale-110 transition-transform">
+            <i class="fa-solid fa-truck-ramp-box"></i>
+          </div>
+          <h3 class="font-montserrat font-bold text-lg text-gt-black mb-2">Entrega em Todo o Brasil</h3>
+          <p class="text-slate-600 text-xs sm:text-sm leading-relaxed">
+            Transporte especializado em caminhão plataforma fechada com seguro total porta a porta.
+          </p>
+        </div>
+
+        <!-- Feature 3 -->
+        <div class="card-lift bg-white p-6 rounded-2xl border border-gt-border hover:border-gt-flame/60 transition-all duration-300 group shadow-gt-card">
+          <div class="w-12 h-12 rounded-xl bg-gt-flame/15 flex items-center justify-center text-gt-flame text-2xl mb-5 group-hover:scale-110 transition-transform">
+            <i class="fa-solid fa-shield-heart"></i>
+          </div>
+          <h3 class="font-montserrat font-bold text-lg text-gt-black mb-2">Garantia Contratual</h3>
+          <p class="text-slate-600 text-xs sm:text-sm leading-relaxed">
+            Veículos 100% revisados antes da entrega, com garantia estendida de motor e câmbio.
+          </p>
+        </div>
+
+        <!-- Feature 4 -->
+        <div class="card-lift bg-white p-6 rounded-2xl border border-gt-border hover:border-gt-flame/60 transition-all duration-300 group shadow-gt-card">
+          <div class="w-12 h-12 rounded-xl bg-gt-black flex items-center justify-center text-gt-amber text-2xl mb-5 group-hover:scale-110 transition-transform">
+            <i class="fa-solid fa-user-tie"></i>
+          </div>
+          <h3 class="font-montserrat font-bold text-lg text-gt-black mb-2">Atendimento Concierge</h3>
+          <p class="text-slate-600 text-xs sm:text-sm leading-relaxed">
+            Consultoria personalizada, rapidez na documentação, transferência e emplacamento.
+          </p>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ========================================================================= -->
+  <!-- FOOTER: 30% BLACK NOBLE BACKGROUND                                        -->
+  <!-- ========================================================================= -->
+  
+  <!-- ========================================================================= -->
+  <!-- LOCALIZAÇÃO / MAPA DA CAPITAL DE SÃO PAULO                                -->
+  <!-- ========================================================================= -->
+  
+  <!-- ========================================================================= -->
+  <!-- SEÇÃO DE GALERIA VISUAL & ESTRUTURA PREMIUM                               -->
+  <!-- ========================================================================= -->
+  <section id="galeria-nicho" class="py-20 bg-slate-950 text-white border-t border-slate-800/80 relative overflow-hidden">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      <div class="text-center max-w-2xl mx-auto mb-14">
+        <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/10 text-amber-300 text-xs font-bold uppercase tracking-wider mb-3">
+          <i class="fa-solid fa-sparkles text-xs"></i> Excelência & Detalhes
+        </span>
+        <h2 class="text-3xl sm:text-4xl font-extrabold tracking-tight text-white">Showroom de Veículos de Alta Performance</h2>
+        <p class="text-xs sm:text-sm text-slate-400 mt-2">Seleção rigorosa com histórico de manutenção comprovado e garantia contratual.</p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        
+        <div class="card-lift bg-slate-900/90 rounded-2xl overflow-hidden border border-slate-800 shadow-xl group">
+          <div class="aspect-[16/10] overflow-hidden relative">
+            <img src="assets/gt-hero.jpg" alt="Superesportivos & Carros de Luxo" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy" />
+            <div class="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent"></div>
+          </div>
+          <div class="p-5 space-y-2">
+            <h3 class="text-base font-bold text-white group-hover:text-amber-300 transition-colors">Superesportivos & Carros de Luxo</h3>
+            <p class="text-xs text-slate-400 leading-relaxed">Veículos revisados e higienizados prontos para entrega imediata no showroom.</p>
+          </div>
+        </div>
+        
+
+        <div class="card-lift bg-slate-900/90 rounded-2xl overflow-hidden border border-slate-800 shadow-xl group">
+          <div class="aspect-[16/10] overflow-hidden relative">
+            <img src="assets/gt-showroom.jpg" alt="Espaço VIP & Lounge de Negociações" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy" />
+            <div class="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent"></div>
+          </div>
+          <div class="p-5 space-y-2">
+            <h3 class="text-base font-bold text-white group-hover:text-amber-300 transition-colors">Espaço VIP & Lounge de Negociações</h3>
+            <p class="text-xs text-slate-400 leading-relaxed">Atendimento exclusivo com privacidade, café gourmet e consultoria financeira.</p>
+          </div>
+        </div>
+        
+
+        <div class="card-lift bg-slate-900/90 rounded-2xl overflow-hidden border border-slate-800 shadow-xl group">
+          <div class="aspect-[16/10] overflow-hidden relative">
+            <img src="assets/gt-supercar.jpg" alt="Veículos Blindados Nível III-A" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy" />
+            <div class="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent"></div>
+          </div>
+          <div class="p-5 space-y-2">
+            <h3 class="text-base font-bold text-white group-hover:text-amber-300 transition-colors">Veículos Blindados Nível III-A</h3>
+            <p class="text-xs text-slate-400 leading-relaxed">Blindagens certificadas pelas melhores montadoras com vidros sem delaminação.</p>
+          </div>
+        </div>
+        
+
+        <div class="card-lift bg-slate-900/90 rounded-2xl overflow-hidden border border-slate-800 shadow-xl group">
+          <div class="aspect-[16/10] overflow-hidden relative">
+            <img src="assets/gt-detail.jpg" alt="Detalhamento Estético & Vitrificação" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy" />
+            <div class="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent"></div>
+          </div>
+          <div class="p-5 space-y-2">
+            <h3 class="text-base font-bold text-white group-hover:text-amber-300 transition-colors">Detalhamento Estético & Vitrificação</h3>
+            <p class="text-xs text-slate-400 leading-relaxed">Proteção cerâmica na pintura que conserva o brilho espelhado da carroceria.</p>
+          </div>
+        </div>
+        
+      </div>
+    </div>
+  </section>
+    
+  
+  <!-- ========================================================================= -->
+  <!-- SEÇÃO DE AVALIAÇÕES & FAQ INTERATIVO                                      -->
+  <!-- ========================================================================= -->
+  
+  <!-- ========================================================================= -->
+  <!-- SEÇÃO COMPARATIVA: ORIGINKIT MATRIX (POR QUE NOS ESCOLHER)                -->
+  <!-- ========================================================================= -->
+  
+  <!-- ========================================================================= -->
+  <!-- SKIPER UI: SLIDER INTERATIVO ANTES & DEPOIS (VITRIFICAÇÃO & POLIMENTO)    -->
+  <!-- ========================================================================= -->
+  <section id="transformacao-visual" class="py-20 bg-[#090D18] text-white border-t border-slate-800/80">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6">
+      <div class="text-center max-w-2xl mx-auto mb-10">
+        <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-red-500/10 text-red-400 text-xs font-bold uppercase tracking-wider mb-3">
+          <i class="fa-solid fa-arrows-left-right"></i> Detalhamento Automotivo
+        </span>
+        <h2 class="text-3xl sm:text-4xl font-black text-white">Proteção Cerâmica & Brilho Espelhado</h2>
+        <p class="text-xs sm:text-sm text-slate-400 mt-2">Arraste a linha para comparar a pintura opaca com marcas de lavagem e a cura cerâmica 9H.</p>
+      </div>
+
+      <div class="ba-container relative w-full aspect-[16/10] rounded-3xl overflow-hidden border border-slate-800 shadow-2xl select-none cursor-ew-resize">
+        <!-- DEPOIS (Base) -->
+        <img src="assets/gt-hero.jpg" alt="Pintura Vitrificada com Brilho Profundo" class="absolute inset-0 w-full h-full object-cover" />
+        <span class="absolute bottom-4 right-4 bg-black/80 backdrop-blur-md text-red-400 border border-red-500/30 text-xs px-3.5 py-1.5 rounded-full font-bold">DEPOIS: Vitrificação 9H</span>
+
+        <!-- ANTES (Layer Cortada) -->
+        <div class="ba-after-layer absolute inset-0 w-1/2 overflow-hidden pointer-events-none border-r-2 border-red-500 shadow-[0_0_15px_rgba(239,68,68,0.5)]">
+          <img src="assets/gt-detail.jpg" alt="Pintura com Micro-riscos" class="absolute inset-0 w-full h-full object-cover max-w-none filter grayscale contrast-125" />
+          <span class="absolute bottom-4 left-4 bg-black/80 backdrop-blur-md text-white text-xs px-3.5 py-1.5 rounded-full font-bold">ANTES: Micro-riscos & Opacidade</span>
+        </div>
+
+        <!-- Slider Handle -->
+        <div class="ba-slider-handle absolute top-0 bottom-0 left-1/2 w-1 bg-red-500 flex items-center justify-center -translate-x-1/2 pointer-events-none">
+          <div class="w-9 h-9 rounded-full bg-slate-950 border-2 border-red-500 text-red-300 shadow-xl flex items-center justify-center text-xs font-bold">
+            ⇄
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="comparativo-originkit" class="py-20 bg-[#060913] text-white border-t border-slate-800/80 relative overflow-hidden">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      
+      <div class="text-center max-w-3xl mx-auto mb-16">
+        <span class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 text-xs font-bold uppercase tracking-wider mb-4">
+          <i class="fa-solid fa-shield-check"></i> Transparência & Rigor Técnico
+        </span>
+        <h2 class="text-3xl sm:text-4xl lg:text-5xl font-black text-white tracking-tight">
+          Por Que Comprar Seu Veículo Esportivo na GT Motors?
+        </h2>
+        <p class="text-slate-400 text-xs sm:text-sm mt-3 leading-relaxed">
+          Transparência absoluta, laudo cautelar aprovado e garantia de procedência.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-stretch">
+        
+        <!-- Opções Comuns do Mercado -->
+        <div class="p-8 rounded-3xl bg-slate-900/60 border border-slate-800 shadow-lg flex flex-col justify-between">
+          <div>
+            <div class="flex items-center gap-3 mb-6">
+              <div class="w-10 h-10 rounded-2xl bg-rose-500/10 border border-rose-500/20 text-rose-400 flex items-center justify-center font-bold text-lg">
+                ✕
+              </div>
+              <div>
+                <h3 class="text-lg font-bold text-slate-300">Lojas Convencionais de Seminovos</h3>
+                <span class="text-[11px] text-slate-500 font-medium">Práticas comuns que geram dor de cabeça</span>
+              </div>
+            </div>
+            <ul class="space-y-4 text-slate-400 text-xs sm:text-sm leading-relaxed">
+            <li class="flex items-start gap-3"><span class="text-rose-500 font-bold">✕</span> <span>Carros com histórico duvidoso de leilão, colisões ou sinistros maquiados</span></li>
+            <li class="flex items-start gap-3"><span class="text-rose-500 font-bold">✕</span> <span>Garantias verbais que não são cumpridas no pós-venda em caso de defeito</span></li>
+            <li class="flex items-start gap-3"><span class="text-rose-500 font-bold">✕</span> <span>Atendimento burocrático e taxas de financiamento abusivas</span></li>
+            <li class="flex items-start gap-3"><span class="text-rose-500 font-bold">✕</span> <span>Veículos entregues sem revisão mecânica ou detalhamento estético</span></li>
+            </ul>
+          </div>
+          <div class="mt-8 pt-4 border-t border-slate-800/80 text-[11px] text-slate-500 flex items-center gap-2">
+            <i class="fa-solid fa-triangle-exclamation text-amber-500"></i> Risco de prejuízos e retrabalho para o cliente.
+          </div>
+        </div>
+
+        <!-- Nosso Padrão de Excelência -->
+        <div class="p-8 rounded-3xl bg-gradient-to-b from-slate-900 via-[#0D1527] to-slate-900 border-2 border-emerald-500/60 shadow-2xl relative flex flex-col justify-between ring-4 ring-emerald-500/10">
+          <div class="absolute -top-3.5 right-6 bg-gradient-to-r from-emerald-500 to-teal-500 text-slate-950 font-black text-[10px] uppercase tracking-wider px-3.5 py-1 rounded-full shadow-lg">
+            Rigor & Performance
+          </div>
+          <div>
+            <div class="flex items-center gap-3 mb-6">
+              <div class="w-10 h-10 rounded-2xl bg-emerald-500/20 border border-emerald-500/40 text-emerald-400 flex items-center justify-center font-bold text-lg shadow-sm">
+                ✓
+              </div>
+              <div>
+                <h3 class="text-lg font-black text-white">GT Motors Brasil</h3>
+                <span class="text-[11px] text-emerald-400 font-semibold">Compromisso formal com o seu resultado</span>
+              </div>
+            </div>
+            <ul class="space-y-4 text-xs sm:text-sm leading-relaxed">
+            <li class="flex items-start gap-3 text-emerald-400 font-medium"><span class="font-black text-emerald-400">✓</span> <span>100% do estoque com perícia cautelar Dekra e Supervisão aprovada sem apontamentos</span></li>
+            <li class="flex items-start gap-3 text-emerald-400 font-medium"><span class="font-black text-emerald-400">✓</span> <span>Garantia contratual formal com histórico completo de revisões em concessionária</span></li>
+            <li class="flex items-start gap-3 text-emerald-400 font-medium"><span class="font-black text-emerald-400">✓</span> <span>Aprovação rápida de crédito com as melhores taxas do mercado em até 60x</span></li>
+            <li class="flex items-start gap-3 text-emerald-400 font-medium"><span class="font-black text-emerald-400">✓</span> <span>Detalhamento estético com vitrificação de pintura e lounge VIP para negociação</span></li>
+            </ul>
+          </div>
+          <div class="mt-8 pt-4 border-t border-slate-800 flex items-center justify-between text-xs">
+            <span class="text-emerald-400 font-bold flex items-center gap-1.5">
+              <i class="fa-solid fa-circle-check"></i> Garantia Contratual
+            </span>
+            <a href="https://wa.me/5532999292311?text=Olá!%20Gostaria%20de%20consultar%20veículos%20disponíveis%20no%20showroom%20da%20GT%20Motors." target="_blank" class="text-white hover:text-emerald-400 font-bold transition flex items-center gap-1">
+              <span>Saber Mais</span> <i class="fa-solid fa-arrow-right text-[10px]"></i>
+            </a>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <section id="faq-depoimentos" class="py-20 bg-[#090D18] text-white border-t border-slate-800/80">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
+        
+        <!-- Left: FAQ Accordion -->
+        <div class="lg:col-span-7 space-y-6">
+          <div>
+            <span class="text-xs font-bold uppercase tracking-wider text-amber-300">Dúvidas Frequentes</span>
+            <h2 class="text-2xl sm:text-3xl font-extrabold text-white mt-1">Perguntas & Respostas Rápidas</h2>
+            <p class="text-xs text-slate-400 mt-1">Clique para ver os detalhes sobre prazos, agendamento e formas de pagamento.</p>
+          </div>
+          <div class="space-y-3">
+            
+        <div class="border border-slate-800 rounded-2xl overflow-hidden bg-slate-900/60 transition">
+          <button type="button" onclick="toggleFaqItem(this)" class="w-full p-4 sm:p-5 text-left flex items-center justify-between text-xs sm:text-sm font-bold text-white hover:text-amber-300 transition">
+            <span>Todos os carros possuem laudo cautelar?</span>
+            <i class="fa-solid fa-chevron-down faq-icon text-xs text-slate-400 transition-transform duration-300 ml-3 shrink-0"></i>
+          </button>
+          <div class="faq-content hidden px-4 pb-4 sm:px-5 sm:pb-5 text-xs text-slate-400 border-t border-slate-800/60 pt-3 leading-relaxed">
+            Sim! 100% do nosso estoque passa por perícia cautelar Dekra e Supervisão sem nenhum apontamento.
+          </div>
+        </div>
+        
+
+        <div class="border border-slate-800 rounded-2xl overflow-hidden bg-slate-900/60 transition">
+          <button type="button" onclick="toggleFaqItem(this)" class="w-full p-4 sm:p-5 text-left flex items-center justify-between text-xs sm:text-sm font-bold text-white hover:text-amber-300 transition">
+            <span>Vocês aceitam veículos na troca?</span>
+            <i class="fa-solid fa-chevron-down faq-icon text-xs text-slate-400 transition-transform duration-300 ml-3 shrink-0"></i>
+          </button>
+          <div class="faq-content hidden px-4 pb-4 sm:px-5 sm:pb-5 text-xs text-slate-400 border-t border-slate-800/60 pt-3 leading-relaxed">
+            Sim, avaliamos seu veículo usado com base no mercado real com pagamento ou repasse imediato.
+          </div>
+        </div>
+        
+
+        <div class="border border-slate-800 rounded-2xl overflow-hidden bg-slate-900/60 transition">
+          <button type="button" onclick="toggleFaqItem(this)" class="w-full p-4 sm:p-5 text-left flex items-center justify-between text-xs sm:text-sm font-bold text-white hover:text-amber-300 transition">
+            <span>É possível financiar com taxas reduzidas?</span>
+            <i class="fa-solid fa-chevron-down faq-icon text-xs text-slate-400 transition-transform duration-300 ml-3 shrink-0"></i>
+          </button>
+          <div class="faq-content hidden px-4 pb-4 sm:px-5 sm:pb-5 text-xs text-slate-400 border-t border-slate-800/60 pt-3 leading-relaxed">
+            Operamos com os principais bancos do país com aprovação de crédito em minutos e parcelamento em até 60x.
+          </div>
+        </div>
+        
+          </div>
+        </div>
+
+        <!-- Right: Social Proof & WhatsApp CTA -->
+        <div class="lg:col-span-5 space-y-6">
+          <div class="bg-slate-900/90 rounded-3xl p-6 sm:p-8 border border-slate-800 shadow-2xl space-y-6">
+            <div>
+              <span class="text-xs font-bold uppercase tracking-wider text-emerald-400">Depoimentos Verificados</span>
+              <h3 class="text-xl font-bold text-white mt-1">O que nossos clientes dizem</h3>
+            </div>
+            <div class="space-y-4">
+              
+        <div class="p-5 rounded-2xl bg-slate-900/80 border border-slate-800 space-y-2">
+          <div class="flex items-center justify-between">
+            <span class="font-bold text-xs text-white">Alexandre Bicalho</span>
+            <span class="text-xs text-amber-400">⭐⭐⭐⭐⭐</span>
+          </div>
+          <p class="text-xs text-slate-400 italic leading-relaxed">"Comprei uma BMW M3 impecável. Transparência total da equipe e entrega impecável."</p>
+        </div>
+        
+
+        <div class="p-5 rounded-2xl bg-slate-900/80 border border-slate-800 space-y-2">
+          <div class="flex items-center justify-between">
+            <span class="font-bold text-xs text-white">Vinícius Morais</span>
+            <span class="text-xs text-amber-400">⭐⭐⭐⭐⭐</span>
+          </div>
+          <p class="text-xs text-slate-400 italic leading-relaxed">"Melhor pós-venda que já vi no segmento premium. Laudo 100% aprovado e carro como novo."</p>
+        </div>
+        
+            </div>
+            <div class="pt-2 border-t border-slate-800">
+              <a href="https://wa.me/5532999292311?text=Ol%C3%A1!%20Gostaria%20de%20agendar%20um%20atendimento%20priorit%C3%A1rio." target="_blank" class="w-full py-4 rounded-xl bg-gradient-to-r from-emerald-500 to-teal-600 hover:opacity-95 text-white font-extrabold text-xs uppercase tracking-wider text-center flex items-center justify-center gap-2 shadow-lg transition transform hover:scale-[1.02]">
+                <i class="fa-brands fa-whatsapp text-base"></i>
+                <span>Agendar no WhatsApp com Prioridade</span>
+              </a>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+    
+  <section id="localizacao" class="py-16 sm:py-20 bg-white border-t border-slate-100 text-slate-800">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="text-center max-w-2xl mx-auto mb-12">
+        <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-slate-100 border border-slate-200 text-slate-700 text-xs font-bold mb-3">
+          <i class="fa-solid fa-location-dot text-rose-500"></i>
+          <span>Fácil Acesso na Capital de São Paulo</span>
+        </div>
+        <h2 class="font-bold text-2xl sm:text-3xl lg:text-4xl text-slate-900 tracking-tight">
+          Onde estamos localizados
+        </h2>
+        <p class="text-slate-500 text-xs sm:text-sm mt-2 leading-relaxed">
+          Showroom com veículos revisados com laudo cautelar 100% aprovado, garantia estendida e financiamento facilitado.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
+        
+        <!-- Info Card -->
+        <div class="lg:col-span-5 bg-slate-900 rounded-3xl p-6 sm:p-8 text-white shadow-xl flex flex-col justify-between space-y-6">
+          <div class="space-y-4">
+            <div class="flex items-center gap-3">
+              <div class="w-10 h-10 rounded-2xl bg-white/10 text-white flex items-center justify-center text-lg shadow border border-white/10">
+                <i class="fa-solid fa-car"></i>
+              </div>
+              <div>
+                <span class="font-bold text-lg text-white block">GT Motors Veículos</span>
+                <span class="text-[10px] font-semibold uppercase tracking-wider text-slate-300 block">Veículos Selecionados & Alta Procedência</span>
+              </div>
+            </div>
+
+            <div class="space-y-3.5 pt-2 text-xs">
+              <div class="flex items-start gap-3">
+                <i class="fa-solid fa-map-pin text-rose-400 text-sm mt-0.5 shrink-0"></i>
+                <div>
+                  <strong class="text-white block font-bold">Endereço Principal:</strong>
+                  <span class="text-slate-300">Av. Paulista, 1000 - Bela Vista / Jardins, São Paulo - SP, CEP 01310-100</span>
+                </div>
+              </div>
+
+              <div class="flex items-start gap-3">
+                <i class="fa-solid fa-train-subway text-emerald-400 text-sm mt-0.5 shrink-0"></i>
+                <div>
+                  <strong class="text-white block font-bold">Acesso por Metrô:</strong>
+                  <span class="text-slate-300">Apenas 250 metros da Estação Trianon-Masp (Linha 2 - Verde).</span>
+                </div>
+              </div>
+
+              <div class="flex items-start gap-3">
+                <i class="fa-solid fa-square-parking text-blue-400 text-sm mt-0.5 shrink-0"></i>
+                <div>
+                  <strong class="text-white block font-bold">Estacionamento Conveniado:</strong>
+                  <span class="text-slate-300">Vaga coberta e manobrista no próprio edifício com comodidade.</span>
+                </div>
+              </div>
+
+              <div class="flex items-start gap-3">
+                <i class="fa-solid fa-wheelchair text-amber-400 text-sm mt-0.5 shrink-0"></i>
+                <div>
+                  <strong class="text-white block font-bold">Acessibilidade Total:</strong>
+                  <span class="text-slate-300">Rampas e elevadores modernos adaptados para idosos e mobilidade reduzida.</span>
+                </div>
+              </div>
+
+              <div class="flex items-start gap-3">
+                <i class="fa-regular fa-clock text-slate-300 text-sm mt-0.5 shrink-0"></i>
+                <div>
+                  <strong class="text-white block font-bold">Horário de Funcionamento:</strong>
+                  <span class="text-slate-300">Segunda a Sexta: 08h às 19h | Sábados: 08h às 14h</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="pt-4 border-t border-slate-800 flex flex-col sm:flex-row gap-3">
+            <a href="https://maps.google.com/?q=Av.+Paulista,+1000+-+Bela+Vista,+S%C3%A3o+Paulo+-+SP" target="_blank" rel="noopener noreferrer" class="flex-1 py-3 px-4 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white text-center font-bold text-xs uppercase tracking-wider flex items-center justify-center gap-2 transition shadow">
+              <i class="fa-solid fa-route"></i>
+              <span>Como Chegar</span>
+            </a>
+            <a href="https://wa.me/5532999292311?text=Ol%C3%A1%2C%20gostaria%20de%20informa%C3%A7%C3%B5es%20sobre%20a%20localiza%C3%A7%C3%A3o%20em%20S%C3%A3o%20Paulo%20(GT Motors Veículos)." target="_blank" rel="noopener noreferrer" class="py-3 px-4 rounded-xl bg-white/10 hover:bg-white/20 text-white text-center font-bold text-xs uppercase tracking-wider flex items-center justify-center gap-2 transition border border-white/15">
+              <i class="fa-brands fa-whatsapp text-emerald-400 text-sm"></i>
+              <span>WhatsApp</span>
+            </a>
+          </div>
+
+        </div>
+
+        <!-- Google Maps Iframe -->
+        <div class="lg:col-span-7 rounded-3xl overflow-hidden shadow-xl border-4 border-white bg-slate-100 min-h-[380px] lg:min-h-[440px] relative">
+          <iframe 
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3657.098485293405!2d-46.6549887237894!3d-23.564903378796857!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94ce59c8da0aa315%3A0xd59f9431f2c9776a!2sAv.%20Paulista%2C%20S%C3%A3o%20Paulo%20-%20SP!5e0!3m2!1spt-BR!2sbr!4v1700000000000!5m2!1spt-BR!2sbr" 
+            width="100%" 
+            height="100%" 
+            style="border:0; min-height: 420px;" 
+            allowfullscreen="" 
+            loading="lazy" 
+            referrerpolicy="no-referrer-when-downgrade"
+            title="Localização GT Motors Veículos em São Paulo - SP"
+            class="w-full h-full"
+          ></iframe>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <footer class="bg-gt-black text-slate-400 text-xs py-14 border-t border-slate-800">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8 mb-12">
+        
+        <!-- Brand Summary -->
+        <div class="lg:col-span-2 space-y-4">
+          <a href="#inicio" class="flex items-center gap-3">
+            <div class="w-8 h-8 rounded-lg bg-gt-flame p-0.5">
+              <div class="w-full h-full bg-gt-black rounded-[6px] flex items-center justify-center">
+                <i class="fa-solid fa-bolt text-gt-flame text-sm"></i>
+              </div>
+            </div>
+            <span class="font-montserrat font-black text-xl text-white">
+              GT<span class="text-gt-flame">MOTORS</span>
+            </span>
+          </a>
+          <p class="text-slate-400 text-sm max-w-sm">
+            Referência nacional em venda de carros esportivos, supercarros e seminovos de alta procedência.
+          </p>
+        </div>
+
+        <!-- Quick Links -->
+        <div class="space-y-3">
+          <h4 class="font-outfit font-bold text-white text-sm uppercase tracking-wider">Navegação</h4>
+          <ul class="space-y-2">
+            <li><a href="#inicio" class="hover:text-gt-flame transition-colors">Início</a></li>
+            <li><a href="#estoque" class="hover:text-gt-flame transition-colors">Carros à Venda</a></li>
+            <li><a href="#avaliacao" class="hover:text-gt-flame transition-colors">Vender / Trocar Carro</a></li>
+            <li><a href="#diferenciais" class="hover:text-gt-flame transition-colors">Sobre a Empresa</a></li>
+          </ul>
+        </div>
+
+        <!-- Categories -->
+        <div class="space-y-3">
+          <h4 class="font-outfit font-bold text-white text-sm uppercase tracking-wider">Categorias</h4>
+          <ul class="space-y-2">
+            <li><a href="#estoque" class="hover:text-gt-flame transition-colors">Superesportivos</a></li>
+            <li><a href="#estoque" class="hover:text-gt-flame transition-colors">Porsche & Ferrari</a></li>
+            <li><a href="#estoque" class="hover:text-gt-flame transition-colors">Sedãs de Alta Performance</a></li>
+            <li><a href="#estoque" class="hover:text-gt-flame transition-colors">SUVs Premium</a></li>
+          </ul>
+        </div>
+
+        <!-- Contact & Hours -->
+        <div class="space-y-3">
+          <h4 class="font-outfit font-bold text-white text-sm uppercase tracking-wider">Showroom & Contato</h4>
+          <p class="text-slate-300">
+            <i class="fa-solid fa-location-dot text-gt-flame mr-1.5"></i> Av. dos Esportivos, 1000 - Showroom VIP
+          </p>
+          <p class="text-slate-300">
+            <i class="fa-brands fa-whatsapp text-green-400 mr-1.5"></i> (32) 99929-2311
+          </p>
+          <p class="text-slate-500 text-[11px]">
+            Segunda a Sexta: 08h30 às 19h00<br />Sábado: 08h30 às 14h00
+          </p>
+        </div>
+
+      </div>
+
+      <!-- Copyright -->
+      <div class="border-t border-slate-800 pt-6 flex flex-col sm:flex-row items-center justify-between gap-4 text-[11px] text-slate-500">
+        <p>&copy; 2026 GT Motors. Todos os direitos reservados. CNPJ: 00.000.000/0001-00.</p>
+        <p>Especialistas em Venda de Carros de Alta Performance.</p>
+      </div>
+
+    </div>
+  </footer>
+
+  <!-- ========================================================================= -->
+  <!-- FLOATING WHATSAPP BUTTON                                                  -->
+  <!-- ========================================================================= -->
+  <a 
+    href="https://wa.me/5532999292311?text=Ol%C3%A1%20GT%20Motors!%20Gostaria%20de%20falar%20com%20um%20vendedor." 
+    target="_blank" 
+    class="fixed bottom-6 right-6 z-50 bg-gradient-to-r from-green-500 to-emerald-600 text-white p-4 rounded-full shadow-2xl hover:scale-110 active:scale-95 transition-all duration-300 flex items-center justify-center group"
+    aria-label="Falar no WhatsApp"
+   rel="noopener noreferrer">
+    <i class="fa-brands fa-whatsapp text-2xl"></i>
+    <span class="max-w-0 overflow-hidden whitespace-nowrap group-hover:max-w-xs transition-all duration-500 ease-in-out font-outfit font-bold text-sm px-0 group-hover:px-2">
+      Fale com Vendedor
+    </span>
+    <span class="absolute -top-1 -right-1 w-3.5 h-3.5 rounded-full bg-gt-flame animate-ping"></span>
+    <span class="absolute -top-1 -right-1 w-3.5 h-3.5 rounded-full bg-gt-flame border-2 border-white"></span>
+  </a>
+
+  <!-- ========================================================================= -->
+  <!-- JAVASCRIPT: VECTOR CANVAS HUD, CAR SWITCHER & FILTER LOGIC                -->
+  <!-- ========================================================================= -->
+  <script>
+    // 1. Scroll Progress Bar
+    window.addEventListener('scroll', () => {
+      const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+      const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+      const scrolled = (winScroll / height) * 100;
+      const prog = document.getElementById('scroll-progress');
+      if (prog) prog.style.width = scrolled + '%';
+    });
+
+    // 2. Animated Vector Laser & HUD Particle Canvas (Subtle Light Background Effect)
+    function initVectorCanvas() {
+      const canvas = document.getElementById('hero-vector-canvas');
+      if (!canvas) return;
+      const ctx = canvas.getContext('2d');
+      let width = 0, height = 0;
+
+      function resize() {
+        width = canvas.parentElement.clientWidth;
+        height = canvas.parentElement.clientHeight;
+        const dpr = Math.min(window.devicePixelRatio || 1, 2);
+        canvas.width = Math.floor(width * dpr);
+        canvas.height = Math.floor(height * dpr);
+        ctx.scale(dpr, dpr);
+      }
+      window.addEventListener('resize', resize);
+      resize();
+
+      // Vector Speed Lines
+      const particles = [];
+      for (let i = 0; i < 24; i++) {
+        particles.push({
+          x: Math.random() * width,
+          y: Math.random() * height,
+          length: 40 + Math.random() * 80,
+          speed: 1.8 + Math.random() * 3.5,
+          alpha: 0.08 + Math.random() * 0.25,
+          color: Math.random() > 0.4 ? 'rgba(255, 77, 0, ' : 'rgba(255, 122, 0, '
+        });
+      }
+
+      function render() {
+        ctx.clearRect(0, 0, width, height);
+
+        // Vector Horizon Laser Lines
+        ctx.lineWidth = 1.0;
+        particles.forEach(p => {
+          p.x += p.speed;
+          if (p.x > width + p.length) {
+            p.x = -p.length;
+            p.y = Math.random() * height;
+          }
+
+          const grad = ctx.createLinearGradient(p.x - p.length, p.y, p.x, p.y);
+          grad.addColorStop(0, `${p.color}0)`);
+          grad.addColorStop(0.8, `${p.color}${p.alpha})`);
+          grad.addColorStop(1, `${p.color}0)`);
+
+          ctx.strokeStyle = grad;
+          ctx.beginPath();
+          ctx.moveTo(p.x - p.length, p.y);
+          ctx.lineTo(p.x, p.y);
+          ctx.stroke();
+        });
+
+        requestAnimationFrame(render);
+      }
+      render();
+    }
+
+    // 3. Interactive Hero Car Selector
+    function initCarSelector() {
+      const buttons = document.querySelectorAll('.car-selector-btn');
+      const renderImg = document.getElementById('hero-car-render');
+      const watermark = document.getElementById('hero-giant-watermark');
+      const statAccel = document.getElementById('hero-stat-accel');
+      const statPrice = document.getElementById('hero-stat-price');
+      const statSpeed = document.getElementById('stat-max-speed');
+      const statTotalPower = document.getElementById('stat-total-power');
+      const statTotalTorque = document.getElementById('stat-total-torque');
+      const heroBuyBtn = document.getElementById('hero-buy-btn');
+
+      buttons.forEach(btn => {
+        btn.addEventListener('click', () => {
+          buttons.forEach(b => {
+            b.classList.remove('active', 'bg-gt-black', 'text-white', 'border-gt-black', 'shadow-md');
+            b.classList.add('bg-white', 'text-slate-700', 'border-gt-border');
+          });
+
+          btn.classList.add('active', 'bg-gt-black', 'text-white', 'border-gt-black', 'shadow-md');
+          btn.classList.remove('bg-white', 'text-slate-700', 'border-gt-border');
+
+          const title = btn.getAttribute('data-title');
+          const imgSrc = btn.getAttribute('data-img');
+          const accel = btn.getAttribute('data-accel');
+          const power = btn.getAttribute('data-power');
+          const speed = btn.getAttribute('data-speed');
+          const torque = btn.getAttribute('data-torque');
+          const price = btn.getAttribute('data-price');
+
+          if (renderImg) {
+            renderImg.style.transform = 'scale(0.96) translateY(10px)';
+            renderImg.style.opacity = '0';
+            setTimeout(() => {
+              renderImg.src = imgSrc;
+              renderImg.style.transform = 'scale(1) translateY(0px)';
+              renderImg.style.opacity = '1';
+            }, 250);
+          }
+
+          if (watermark) watermark.textContent = title;
+          if (statAccel) statAccel.textContent = accel;
+          if (statPrice) statPrice.textContent = price;
+          if (statSpeed) statSpeed.textContent = speed;
+          if (statTotalPower) statTotalPower.textContent = power;
+          if (statTotalTorque) statTotalTorque.textContent = torque;
+
+          if (heroBuyBtn) {
+            const msg = encodeURIComponent(`Olá GT Motors! Gostaria de fazer uma proposta para o veículo ${title} no valor de ${price}.`);
+            heroBuyBtn.href = `https://wa.me/5532999292311?text=${msg}`;
+          }
+        });
+      });
+    }
+
+    // 4. Inventory Filter Tabs
+    function initInventoryFilter() {
+      const tabs = document.querySelectorAll('.filter-tab');
+      const items = document.querySelectorAll('.car-item');
+
+      tabs.forEach(tab => {
+        tab.addEventListener('click', () => {
+          tabs.forEach(t => {
+            t.classList.remove('active', 'bg-gt-black', 'text-white');
+            t.classList.add('bg-white', 'text-slate-700', 'border', 'border-gt-border');
+          });
+          tab.classList.add('active', 'bg-gt-black', 'text-white');
+          tab.classList.remove('bg-white', 'text-slate-700', 'border', 'border-gt-border');
+
+          const filter = tab.getAttribute('data-filter');
+          items.forEach(item => {
+            if (filter === 'all' || item.classList.contains(filter)) {
+              item.style.display = 'flex';
+            } else {
+              item.style.display = 'none';
+            }
+          });
+        });
+      });
+    }
+
+    // 5. Mobile Drawer Toggle
+    function initMobileMenu() {
+      const btn = document.getElementById('mobile-menu-btn');
+      const menu = document.getElementById('mobile-menu');
+      if (btn && menu) {
+        btn.addEventListener('click', () => menu.classList.toggle('hidden'));
+        document.querySelectorAll('.mobile-link').forEach(link => {
+          link.addEventListener('click', () => menu.classList.add('hidden'));
+        });
+      }
+    }
+
+    // DOM Ready Initialization
+    document.addEventListener('DOMContentLoaded', () => {
+      initVectorCanvas();
+      initCarSelector();
+      initInventoryFilter();
+      initMobileMenu();
+    });
+  </script>
+
+  <script src="../assets/js/motion-core.js"></script>
+
+  <!-- ========================================================================= -->
+  <!-- MODAL: VÍDEO & QUALIDADE DE VIDA                                          -->
+  <!-- ========================================================================= -->
+  <div id="video-qv-modal" class="fixed inset-0 z-50 bg-black/85 backdrop-blur-md flex items-center justify-center p-4 hidden">
+    <div class="bg-white text-slate-900 rounded-3xl max-w-2xl w-full p-6 sm:p-8 shadow-2xl border border-slate-200 relative animate-fade-in max-h-[90vh] overflow-y-auto">
+      <button onclick="closeVideoQvModal()" class="absolute top-4 right-4 w-9 h-9 rounded-full bg-slate-100 hover:bg-slate-200 text-slate-600 flex items-center justify-center transition shadow-sm z-10" title="Fechar">
+        <i class="fa-solid fa-xmark text-sm"></i>
+      </button>
+
+      <div class="flex items-center gap-2 mb-3">
+        <span class="px-3 py-1 rounded-full bg-emerald-100 text-emerald-800 text-xs font-bold uppercase tracking-wider flex items-center gap-1.5">
+          <i class="fa-solid fa-heart-pulse"></i> Qualidade de Vida & Bem-Estar
+        </span>
+        <span class="text-xs text-slate-400">• Vídeo Exclusivo</span>
+      </div>
+
+      <h3 class="text-xl sm:text-2xl font-extrabold text-slate-900 mb-2 leading-tight">
+        A Conquista do seu Carro Novo com Tranquilidade e Segurança
+      </h3>
+      <p class="text-xs sm:text-sm text-slate-600 mb-4 leading-relaxed">
+        Assista ao tour em vídeo dos veículos impecáveis com quilometragem original e histórico transparente sem surpresas.
+      </p>
+      
+      <!-- Video Player Preview -->
+      <div class="aspect-video w-full rounded-2xl overflow-hidden relative bg-slate-950 shadow-inner group mb-5">
+        <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent flex flex-col justify-between p-5 z-10">
+          <div class="self-end px-2.5 py-1 rounded-lg bg-black/60 backdrop-blur-md text-white text-[11px] font-mono font-semibold">
+            <i class="fa-solid fa-clock mr-1 text-emerald-400"></i> 01:45 min • Full HD
+          </div>
+          <div class="flex items-center gap-4">
+            <a href="https://wa.me/5532999292311?text=Ol%C3%A1%2C%20assisti%20ao%20v%C3%ADdeo%20sobre%20qualidade%20de%20vida%20e%20quero%20mais%20informa%C3%A7%C3%B5es%20(GT Motors Veículos)." target="_blank" rel="noopener noreferrer" class="w-14 h-14 rounded-full bg-emerald-500 hover:bg-emerald-400 text-white flex items-center justify-center text-xl shadow-xl hover:scale-110 active:scale-95 transition-all shrink-0">
+              <i class="fa-solid fa-play ml-1"></i>
+            </a>
+            <div>
+              <p class="text-white font-bold text-sm sm:text-base leading-snug">Metodologia Focada no seu Bem-Estar</p>
+              <p class="text-emerald-300 text-xs">Atendimento VIP com avaliação justa do seu usado na troca no mesmo dia</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 3 Pilares de Qualidade de Vida -->
+      <div class="grid grid-cols-3 gap-2 sm:gap-3 py-3 border-y border-slate-100 mb-5 text-center text-xs">
+        <div class="p-2.5 rounded-xl bg-slate-50">
+          <i class="fa-solid fa-clock-rotate-left text-emerald-600 block text-base mb-1"></i>
+          <strong class="block text-slate-800 text-[11px] font-bold">Sem Fila e Sem Espera</strong>
+          <span class="text-[10px] text-slate-500">Respeito ao seu tempo</span>
+        </div>
+        <div class="p-2.5 rounded-xl bg-slate-50">
+          <i class="fa-solid fa-shield-halved text-emerald-600 block text-base mb-1"></i>
+          <strong class="block text-slate-800 text-[11px] font-bold">Segurança & Conforto</strong>
+          <span class="text-[10px] text-slate-500">Ambiente acolhedor</span>
+        </div>
+        <div class="p-2.5 rounded-xl bg-slate-50">
+          <i class="fa-solid fa-bolt text-emerald-600 block text-base mb-1"></i>
+          <strong class="block text-slate-800 text-[11px] font-bold">Fechamento em 1 Clique</strong>
+          <span class="text-[10px] text-slate-500">Sem burocracia</span>
+        </div>
+      </div>
+
+      <div class="flex flex-col sm:flex-row gap-3">
+        <a href="https://wa.me/5532999292311?text=Ol%C3%A1%2C%20quero%20fechar%20meu%20atendimento%20com%20prioridade%20e%20foco%20em%20qualidade%20de%20vida%20(GT Motors Veículos)." target="_blank" rel="noopener noreferrer" class="flex-1 py-3.5 px-4 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs uppercase tracking-wider text-center flex items-center justify-center gap-2 shadow-lg transition">
+          <i class="fa-brands fa-whatsapp text-base"></i> Fechar no WhatsApp com Prioridade
+        </a>
+        <button onclick="closeVideoQvModal(); scrollToFormFast();" class="py-3.5 px-5 rounded-xl bg-slate-900 hover:bg-black text-white font-bold text-xs uppercase tracking-wider text-center transition">
+          Preencher Formulário Online
+        </button>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- ========================================================================= -->
+  <!-- MOBILE BOTTOM STICKY BAR (CONVERSÃO EM 1 CLIQUE)                          -->
+  <!-- ========================================================================= -->
+  
+
+
+  <!-- JS HELPERS: VÍDEO QUALIDADE DE VIDA & 1-CLICK CONVERSION -->
+  <script>
+    function openVideoQvModal() {
+      const m = document.getElementById('video-qv-modal');
+      if (m) m.classList.remove('hidden');
+    }
+
+    function closeVideoQvModal() {
+      const m = document.getElementById('video-qv-modal');
+      if (m) m.classList.add('hidden');
+    }
+
+    function scrollToFormFast(serviceName) {
+      let target = document.getElementById('contato') || document.getElementById('agendamento') || document.getElementById('contato') || document.getElementById('simulador') || document.querySelector('form');
+      if (target) {
+        target.scrollIntoView({ behavior: 'smooth' });
+        target.classList.add('ring-4', 'ring-emerald-400/50');
+        setTimeout(() => target.classList.remove('ring-4', 'ring-emerald-400/50'), 1500);
+
+        setTimeout(() => {
+          const input = target.querySelector('input:not([type="hidden"])') || document.querySelector('input[type="text"], input[type="tel"]');
+          if (input) input.focus();
+        }, 600);
+      } else {
+        window.location.href = "https://wa.me/5532999292311?text=Ol%C3%A1%2C%20gostaria%20de%20fechar%20com%20poucos%20cliques%20(GT Motors Veículos).";
+      }
+    }
+  </script>
+
+
+  <script>
+    // Skiper UI Before/After Slider Interaction (Mouse & Touch)
+    document.querySelectorAll('.ba-container').forEach(container => {
+      const afterLayer = container.querySelector('.ba-after-layer');
+      const handle = container.querySelector('.ba-slider-handle');
+      if (!afterLayer || !handle) return;
+      let isDown = false;
+
+      const move = (e) => {
+        if (!isDown) return;
+        const rect = container.getBoundingClientRect();
+        const clientX = e.touches ? e.touches[0].clientX : e.clientX;
+        let x = clientX - rect.left;
+        if (x < 0) x = 0;
+        if (x > rect.width) x = rect.width;
+        const percent = (x / rect.width) * 100;
+        afterLayer.style.width = percent + '%';
+        handle.style.left = percent + '%';
+      };
+
+      container.addEventListener('mousedown', () => isDown = true);
+      window.addEventListener('mouseup', () => isDown = false);
+      container.addEventListener('mousemove', move);
+
+      container.addEventListener('touchstart', () => isDown = true);
+      window.addEventListener('touchend', () => isDown = false);
+      container.addEventListener('touchmove', move);
+    });
+  </script>
+
+
+  <!-- ========================================================================= -->
+  <!-- ADR-002: MOBILE CONVERSION DOCK (1-TOQUE NO WHATSAPP)                     -->
+  <!-- ========================================================================= -->
+  <aside class="md:hidden fixed bottom-0 left-0 right-0 z-50 bg-[#070A12]/95 backdrop-blur-md border-t border-slate-800 p-2.5 px-4 shadow-[0_-4px_25px_rgba(0,0,0,0.5)]">
+    <div class="flex items-center justify-between gap-3 max-w-lg mx-auto">
+      <div class="flex flex-col">
+        <span class="text-[10px] uppercase font-bold text-slate-400 leading-tight tracking-wider">GT Motors Brasil</span>
+        <span class="text-xs text-emerald-400 font-bold flex items-center gap-1.5">
+          <span class="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span>
+          <span>Online agora</span>
+        </span>
+      </div>
+      <a href="https://wa.me/5532999292311?text=Olá!%20Gostaria%20de%20consultar%20veículos%20disponíveis%20no%20showroom%20da%20GT%20Motors." target="_blank" class="shimmer-btn flex items-center gap-2 px-5 py-2.5 rounded-xl bg-gradient-to-r from-emerald-500 to-teal-600 text-white font-extrabold text-xs uppercase tracking-wider shadow-lg shadow-emerald-950/50 transition-transform active:scale-95" rel="noopener noreferrer">
+        <i class="fa-brands fa-whatsapp text-base"></i>
+        <span>Atendimento</span>
+      </a>
+    </div>
+  </aside>
+
+</body>
+</html>
